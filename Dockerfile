@@ -5,9 +5,12 @@ RUN yum update -y
 #RUN apt-get upgrade -y 
 
 run yum install -y yum-utils
-run yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+run dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 
-RUN yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+RUN dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+#systemctl start docker
+#systemctl enable docker
 
 run mkdir invenioils
 run git clone https://github.com/inveniosoftware/invenio-app-ils invenioils
